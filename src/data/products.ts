@@ -69,6 +69,23 @@ export const productsByCategory = (id: CategoryId) =>
 
 export const siteImages = {
   hero: "/images/hero/main.jpg",
+  heroSlides: [
+    "/images/hero/main.jpg",
+    "/images/perfumes/1.jpg",
+    "/images/clothing/1.jpg",
+    "/images/household/1.jpg",
+    "/images/children/1.jpg",
+    "/images/brand/about-1.jpg",
+    "/images/perfumes/2.jpg",
+    "/images/clothing/2.jpg",
+    "/images/household/2.jpg",
+    "/images/children/2.jpg",
+    "/images/brand/about-2.jpg",
+    "/images/clothing/3.jpg",
+    "/images/household/3.jpg",
+    "/images/children/3.jpg",
+    "/images/brand/statement.jpg",
+  ],
   aboutPrimary: "/images/brand/about-1.jpg",
   aboutSecondary: "/images/brand/about-2.jpg",
   statement: "/images/brand/statement.jpg",

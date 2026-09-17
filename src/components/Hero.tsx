@@ -1,18 +1,40 @@
+import { useEffect, useState } from "react";
 import { business, siteImages, whatsappLink } from "../data/products";
 import { ArrowIcon, LocationIcon, WhatsAppIcon } from "./icons";
 import SmartImage from "./SmartImage";
 
+const SLIDE_DURATION = 5000;
+
 export default function Hero() {
+  const slides = siteImages.heroSlides;
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (slides.length < 2) return;
+    const id = setInterval(() => {
+      setActive((i) => (i + 1) % slides.length);
+    }, SLIDE_DURATION);
+    return () => clearInterval(id);
+  }, [slides.length]);
+
   return (
     <section id="home" className="relative flex min-h-[100svh] items-center overflow-hidden bg-ink pt-24">
       <div className="absolute inset-0">
-        <SmartImage
-          src={siteImages.hero}
-          alt="OJ LUXE — featured collection"
-          label="Hero image — add /images/hero/main.jpg"
-          className="h-full w-full"
-          eager
-        />
+        {slides.map((src, i) => (
+          <div
+            key={src}
+            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: i === active ? 1 : 0 }}
+          >
+            <SmartImage
+              src={src}
+              alt="OJ LUXE — featured collection"
+              label="Hero image — add /images/hero/main.jpg"
+              className="h-full w-full"
+              eager={i === 0}
+            />
+          </div>
+        ))}
         <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/70 to-ink/30" />
         <div className="absolute inset-0 bg-linear-to-r from-ink/80 via-ink/20 to-transparent" />
         <div
